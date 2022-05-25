@@ -1,0 +1,98 @@
+{
+  "meta": {
+      "found": 497940,
+      "returned": 5,
+      "limit": 5,
+      "page": 1
+  },
+  "data": [
+      {
+          "uuid": "66f4eb58-0209-4264-b703-a480ada954f2",
+          "title": "Avalanche vs. Blues",
+          "description": "Get live coverage of the Colorado Avalanche vs. St. Louis Blues hockey game.",
+          "keywords": "",
+          "snippet": "Adam Gaudette and Team USA improve to 4-1 as Canada falters at world ice hockey championship\n\nCanada's unbeaten start to open the world ice hockey championship ...",
+          "url": "https://www.espn.com/nhl/game/_/gameId/401439016",
+          "image_url": "http://s.espncdn.com/stitcher/sports/hockey/nhl/events/401439016.png?templateId=espn.com.share.1",
+          "language": "en",
+          "published_at": "2022-05-22T01:11:54.000000Z",
+          "source": "espn.com",
+          "categories": [
+              "sports",
+              "general"
+          ],
+          "relevance_score": null,
+          "locale": "us"
+      },
+      {
+          "uuid": "1360ee9f-071c-4a01-98e6-a3b5135ab947",
+          "title": "‘Mission: Impossible – Dead Reckoning – Part One’ Trailer Leaks To Social",
+          "description": "A trailer for 'Mission: Impossible - Dead Reckoning - Part One' has apparently leaked to social.",
+          "keywords": "",
+          "snippet": "On the set of 'Mission: Impossible — Fallout,' from left, director Christopher McQuarrie, steady cam operator Marcus Pohlus and Tom Cruise.\n\nA trailer for Mis...",
+          "url": "https://deadline.com/2022/05/mission-impossible-dead-reckoning-part-one-trailer-leaks-to-social-1235029792/",
+          "image_url": "https://deadline.com/wp-content/uploads/2022/05/Mission-Impossible-BTS-05-e1653179358436.jpg?w=1024",
+          "language": "en",
+          "published_at": "2022-05-22T00:36:17.000000Z",
+          "source": "deadline.com",
+          "categories": [
+              "entertainment"
+          ],
+          "relevance_score": null,
+          "locale": "us"
+      },
+      {
+          "uuid": "abb82286-58de-495c-8ac7-6205f8a7fd4f",
+          "title": "Russia tries to rebound in Ukraine as prospects for victory fade : news",
+          "description": "24.7m members in the news community. The place for news articles about current events in the United States and the rest of the world. Discuss it all …",
+          "keywords": "",
+          "snippet": "The place for news articles about current events in the United States and the rest of the world. Discuss it all here.",
+          "url": "https://www.reddit.com/r/news/comments/uuxdof/russia_tries_to_rebound_in_ukraine_as_prospects/",
+          "image_url": "https://external-preview.redd.it/vSpTs--7P_Z66Ha8ab6yw7XVHczB6F08mCKaPAp3t7A.jpg?auto=webp&s=407a5d5348cbc87454f2a137cfd93c5fa5b04442",
+          "language": "en",
+          "published_at": "2022-05-22T00:34:27.000000Z",
+          "source": "reddit.com",
+          "categories": [
+              "general",
+              "politics"
+          ],
+          "relevance_score": null,
+          "locale": "us"
+      },
+      {
+          "uuid": "0e357bff-b7f3-4861-bbb5-60f51b8d188d",
+          "title": "Tiger Woods withdraws after rough third round at PGA Championship",
+          "description": "Woods shot a 9-over-par 79 Saturday and was tied for last place.",
+          "keywords": "",
+          "snippet": "TULSA, Okla. — There will be no Sunday red for Tiger Woods in the PGA Championship.\n\nThe PGA of America said Woods has withdrawn. Woods had a career-high 79 i...",
+          "url": "https://www.bostonglobe.com/2022/05/21/sports/tiger-woods-withdraws-after-rough-third-round-pga-championship/?camp=bg:brief:rss:feedly&rss_id=feedly_rss_brief",
+          "image_url": "https://bostonglobe-prod.cdn.arcpublishing.com/resizer/MiMe1Rep6pmlzHaD1uoqZBDhpPQ=/506x0/cloudfront-us-east-1.images.arcpublishing.com/bostonglobe/WLV7YBA66IUU3764NNQGUVCWVU.jpg",
+          "language": "en",
+          "published_at": "2022-05-22T00:23:30.000000Z",
+          "source": "bostonglobe.com",
+          "categories": [
+              "general"
+          ],
+          "relevance_score": null,
+          "locale": "us"
+      },
+      {
+          "uuid": "374ab9d7-ac44-4bd2-beb9-1bd7e0326e58",
+          "title": "Why the DEA’s Private Plane Was Forced Out of Mexico",
+          "description": "The embarrassing downgrade is a massive win for Mexican cartels.",
+          "keywords": "Mexico, Sinaloa Cartel, Drug Enforcement Administration, Mexico City",
+          "snippet": "The latest setback to U.S. anti-narcotics efforts in Mexico came earlier this month, when the Drug Enforcement Administration (DEA) was forced to remove its fla...",
+          "url": "https://www.thedailybeast.com/why-the-deas-private-beechcraft-king-air-plane-was-forced-out-of-mexico",
+          "image_url": "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_675,w_1200,x_0,y_0/dpr_2.0/c_limit,w_740/fl_lossy,q_auto/v1653178705/052222-kryt-plane-hero_ycs9dr",
+          "language": "en",
+          "published_at": "2022-05-22T00:19:50.000000Z",
+          "source": "thedailybeast.com",
+          "categories": [
+              "general",
+              "politics"
+          ],
+          "relevance_score": null,
+          "locale": "us"
+      }
+  ]
+}
