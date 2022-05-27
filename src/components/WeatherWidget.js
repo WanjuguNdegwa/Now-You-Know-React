@@ -22,7 +22,7 @@ const WeatherWidget = () => {
 
   return (
     <>
-    {weather && <div>{`${parseInt(weather.main.temp_max) - 273}°C / ${parseInt(weather.main.temp_min) - 273}°C ${weather.name}`}</div>}
+    {weather && <div>{`Currently ${parseInt(weather.main.temp) - 273}°C in ${weather.name}, ${weather.weather[0].description}`}</div>}
     </>
   )
 }
