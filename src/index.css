@@ -71,7 +71,6 @@ nav {
 }
 
 #loading {
-  display: none;
   width: 50px;
   height: 50px;
   border: 5px solid rgb(26 108 97 / 56%);
@@ -98,4 +97,11 @@ nav {
 
 .news-article {
   width: 16rem;
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  left: 40%;
+  margin-bottom: 1rem;
 }
