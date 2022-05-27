@@ -1,24 +1,24 @@
 import NewsArticle from "./NewsArticle"
 
-const NewsList = ({articles}) => {
+const NewsList = ({articles, isLoading, title}) => {
   return (
     <div className="container">
-      <div>
-        <h2 className="my-3">Top Stories</h2>
+      <h2 className="my-3">{title.charAt(0).toUpperCase() + title.slice(1)}</h2>
 
-        <div id="loading"></div>
-        <div className="row d-flex justify-content-between">
-          {articles.length > 0 ? articles.map((article, index) => (
-            <NewsArticle
-              key={index}
-              article={article}
-            />
-          )) :
+      {isLoading ? (<div id="loading"></div>) :
+      (<div className="row d-flex justify-content-between">
+        {articles && articles.length > 0 ? 
+          articles.filter((article) => article.content !== null)
+            .map((article, index) => (
+              <NewsArticle
+                key={index}
+                article={article}
+              />
+            )) 
+          :
           "No articles to show"
-          }
-        </div>
-      </div>
-
+        }
+      </div>)}
     </div>
   )
 }
