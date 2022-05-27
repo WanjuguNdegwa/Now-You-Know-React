@@ -1,0 +1,12 @@
+.sources {
+    margin-top: 1rem;
+}
+
+.source {
+    cursor: pointer;
+    margin-bottom: 0.25rem;
+}
+
+.source:hover {
+    text-decoration: underline;
+}
