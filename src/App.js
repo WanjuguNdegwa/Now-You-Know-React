@@ -1,24 +1,44 @@
 import { useState, useEffect, useRef } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 
-import './App.css';
-import Header from './components/Header';
-import NewsList from './components/NewsList';
-import Footer from './components/Footer';
-import About from './components/About';
-import Navbar from './components/Navbar';
+
+import { Header, Navbar, NewsList, Footer, SavedArticles, Sources} from './components'
+
 
 function App() {
-  const [category, setCategory] = useState('general')
-  const [query, setQuery] = useState('')
-  const [country, setCountry] = useState('us')
   const NEWS_API_KEY = process.env.REACT_APP_NEWS_API_KEY
 
+  const [category, setCategory] = useState('general')
+  const [query, setQuery] = useState('')
+  const [language, setLanguage] = useState('en')
+  const [country, setCountry] = useState('us')
   const [articles, setArticles] = useState([])
+  const [sources, setSources] = useState([])
+  const [isLoading, setIsLoading] = useState(false);
   const articlesRef = useRef(articles)
+  const sourcesRef = useRef(sources)
+
+  const proxy = 'https://api.allorigins.win/get?url='
+
+  let navigate = useNavigate();
 
   useEffect(() => {
-    const proxy = 'https://api.allorigins.win/get?url='
+    let url = `https://newsapi.org/v2/top-headlines/sources?
+        apiKey=${NEWS_API_KEY}&
+        country=${country}&
+        category=${category}&
+        language=${language}`;
+    url = proxy + encodeURIComponent(url.replace(/\s/g, ''));
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        const newsSources = JSON.parse(data.contents).sources
+        setSources(newsSources)
+      })
+  }, [sourcesRef.current, category, language, country, NEWS_API_KEY])
+
+  useEffect(() => {
     let url = `https://newsapi.org/v2/top-headlines?
                 q=${query}&
                 apiKey=${NEWS_API_KEY}&
@@ -27,94 +47,90 @@ function App() {
                 limit=15`;
     url = proxy + encodeURIComponent(url.replace(/\s/g, ''));
 
+    setIsLoading(true);
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
         const news = JSON.parse(data.contents).articles
-        // console.log(news);
         setArticles(news)
-      })
+      }).finally(() => setIsLoading(false))
   }, [articlesRef.current, category, query, country, NEWS_API_KEY])
 
   const handleCategoryClick = (c) => {
-    setCategory(c);
+    setCategory(c)
+    navigate('/')
   }
-
+  
   const handleCountryChange = (c) => {
-    setCountry(c);
+    setCountry(c)
+    navigate('/')
   }
 
-  const handleQuery = (q) => {
-    setQuery(q);
+  const handleQuery = (e) => {
+    e.preventDefault()
+    const q = e.target[0].value;
+    setQuery(q)
+    navigate('/')
   }
 
-  // const fetchTask = async (id) => {
-  //   const res = await fetch(`http://localhost:4000/tasks/${id}`)
-  //   const data = await res.json()
+  const handleLanguageChange = (lang) => {
+    setLanguage(lang)
+    const sourceList = sources.filter(source => source.language === lang).map(source => source.id).join(',')
+    let url = `https://newsapi.org/v2/everything?
+                apiKey=${NEWS_API_KEY}&
+                q=${query}&
+                sources=${sourceList}&
+                language=${lang}&
+                page=1&
+                pageSize=15`;
+    url = proxy + encodeURIComponent(url.replace(/\s/g, ''));
+    setIsLoading(true);
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        const news = JSON.parse(data.contents).articles
+        setArticles(news)
+      }).finally(() => setIsLoading(false))
+    // navigate('/')
+  }
 
-  //   return data;
-  // }
-
-  // Add Task
-  // const addTask = async (task) => {
-  //   const res = await fetch("http://localhost:4000/tasks", {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-type': 'application/json',
-  //     },
-  //     body: JSON.stringify(task)
-  //   })
-
-  //   const newTask = await res.json()
-  //   setTasks([...tasks, newTask])
-  // }
-
-  // Delete Task
-  // const deleteTask = async (id) => {
-  //   await fetch(`http://localhost:4000/tasks/${id}`, {
-  //     method: 'DELETE'
-  //   })
-
-  //   setTasks(tasks.filter((task) => task.id !== id))
-  // }
-
-  // Toggle Reminder
-  // const toggleReminder = async (id) => {
-  //   const taskToToggle = await fetchTask(id);
-  //   const updatedTask = {...taskToToggle, reminder: !taskToToggle.reminder}
-
-  //   const res = await fetch(`http://localhost:4000/tasks/${id}`, {
-  //     method: 'PUT',
-  //     headers: {
-  //       'Content-type': 'application/json',
-  //     },
-  //     body: JSON.stringify(updatedTask)
-  //   })
-
-  //   const data = await res.json()
-
-  //   setTasks(
-  //     tasks.map((task) => 
-  //       task.id === id ? 
-  //         {...task, reminder: data.reminder} :
-  //         task
-  //   ))
-  // }
+  const handleSourceClick = (sourceId) => {
+    let url = `https://newsapi.org/v2/top-headlines?
+                apiKey=${NEWS_API_KEY}&
+                sources=${sourceId}&
+                page=1&
+                pageSize=15`;
+    url = proxy + encodeURIComponent(url.replace(/\s/g, ''));
+    setIsLoading(true);
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        const news = JSON.parse(data.contents).articles
+        setArticles(news)
+      }).finally(() => setIsLoading(false))
+  }
 
   return (
-    <Router>
+    <div className='vh-100'>
       <Header />
       <Navbar 
-        onNavigate={handleCategoryClick} 
-        onSearch={handleQuery} 
-        onCountryChange={handleCountryChange} 
+        onNavigate={handleCategoryClick}
+        onSearch={handleQuery}
+        onCountryChange={handleCountryChange}
+        onLanguageChange={handleLanguageChange}
+        category={category}
       />
-      <Routes>
-        <Route path="/" element={<NewsList articles={articles} />} />
-        <Route path='/about' element={<About />} />
-      </Routes>
+      <div className='d-flex'>
+        <Sources sourcesList={sources} onSourceClick={handleSourceClick}/>
+        <Routes>
+          <Route path="/" element={<NewsList title={category} articles={articles} isLoading={isLoading}/>} />
+          <Route path="/saved" element={<SavedArticles />} />
+          <Route path="*" element={<div>Not Found</div>} />
+        </Routes>
+      </div>
+
       <Footer />
-    </Router>
+    </div>
   );
 }
 
