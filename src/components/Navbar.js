@@ -1,7 +1,9 @@
-import React from 'react'
+import { Link, useLocation } from "react-router-dom";
 import Select from './Select'
 
-const Navbar = ({ onNavigate, onSearch, onCountryChange }) => {
+const Navbar = ({ onNavigate, onSearch, onCountryChange, onLanguageChange, category }) => {
+  const {pathname} = useLocation();
+
   const countries = [
     {
       value: "",
@@ -34,6 +36,26 @@ const Navbar = ({ onNavigate, onSearch, onCountryChange }) => {
     {
       value: "za",
       display: "South Africa"
+    },
+    {
+      value: "sa",
+      display: "Saudi Arabia"
+    },
+    {
+      value: "cn",
+      display: "China"
+    },
+    {
+      value: "in",
+      display: "India"
+    },
+    {
+      value: "it",
+      display: "Italy"
+    },
+    {
+      value: "jp",
+      display: "Japan"
     },
   ]
 
@@ -157,37 +179,40 @@ const Navbar = ({ onNavigate, onSearch, onCountryChange }) => {
                             <option value="za">South Africa</option>
                         </select> */}
           </form>
-          <form className="form-inline ms-2 my-2 my-lg-0">
+          {/* <form className="form-inline ms-2 my-2 my-lg-0">
             <label className="mb-2">Language</label>
-            <Select options={languages} />
-          </form>
+            <Select options={languages} handleChange={onLanguageChange}/>
+          </form> */}
           <ul className="navbar-nav center-horizontal">
             <li className="nav-item">
-              <button className="active category-button" onClick={() => onNavigate('general')}>General</button>
+              <button className={`category-button ${category === 'general' ? "active" : ""}`} onClick={() => onNavigate('general')}>General</button>
             </li>
             <li className="nav-item">
-              <button className="category-button" onClick={() => onNavigate('entertainment')}>Entertainment</button>
+              <button className={`category-button ${category === 'entertainment' ? "active" : ""}`} onClick={() => onNavigate('entertainment')}>Entertainment</button>
             </li>
             <li className="nav-item">
-              <button className="category-button" onClick={() => onNavigate('business')}>Business</button>
+              <button className={`category-button ${category === 'business' ? "active" : ""}`} onClick={() => onNavigate('business')}>Business</button>
             </li>
             <li className="nav-item">
-              <button className="category-button" onClick={() => onNavigate('health')}>Health</button>
+              <button className={`category-button ${category === 'health' ? "active" : ""}`} onClick={() => onNavigate('health')}>Health</button>
             </li>
             <li className="nav-item">
-              <button className="category-button" onClick={() => onNavigate('science')}>Science</button>
+              <button className={`category-button ${category === 'science' ? "active" : ""}`} onClick={() => onNavigate('science')}>Science</button>
             </li>
             <li className="nav-item">
-              <button className="category-button" onClick={() => onNavigate('sports')}>Sports</button>
+              <button className={`category-button ${category === 'sports' ? "active" : ""}`} onClick={() => onNavigate('sports')}>Sports</button>
             </li>
             <li className="nav-item">
-              <button className="category-button" onClick={() => onNavigate('technology')}>Technology</button>
+              <button className={`category-button ${category === 'technology' ? "active" : ""}`} onClick={() => onNavigate('technology')}>Technology</button>
+            </li>
+            <li className="nav-item">
+              <Link className={`category-button ${pathname === '/saved' ? "active" : ""}`} to="/saved">Bookmarks</Link>
             </li>
           </ul>
 
-          <form className="form-inline my-2 my-lg-0">
-            <input className="form-control mr-5" type="search" id="search" placeholder="Search by topic"
-              aria-label="Search" />
+          <form className="form-inline my-2 my-lg-0" onSubmit={(e) => onSearch(e)}>
+            <input className="form-control mr-5" type="search" id="search" name="query" placeholder="Search by topic"
+              aria-label="Search" autoComplete="off"/>
           </form>
         </div>
       </div>
